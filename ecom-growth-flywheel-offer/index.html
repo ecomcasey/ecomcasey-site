@@ -1,13 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-KC9D4QMP');</script>
-<!-- End Google Tag Manager -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EcomCasey - Grow Your Ecommerce Revenue 20-40% in 120 Days</title>
@@ -825,13 +818,29 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 justify-content: center;
             }
         }
+
+        /* Lead Capture Form */
+        .lead-form { max-width:520px; margin:0 auto 2rem; background:var(--bg-dark); border-radius:16px; padding:2.5rem 2rem; border:1px solid rgba(37,99,235,0.15); box-shadow:0 20px 60px rgba(15,23,42,0.15); text-align:left; position:relative; z-index:2; }
+        .lead-form-title { font-size:1.4rem; margin-bottom:.4rem; color:var(--text-dark); text-align:center; }
+        .lead-form-subtitle { font-size:.95rem; color:var(--text-muted); margin-bottom:1.5rem; text-align:center; }
+        .form-row { display:flex; gap:.75rem; margin-bottom:.75rem; }
+        .form-row.full { display:block; margin-bottom:.75rem; }
+        .form-group { flex:1; }
+        .form-group label { display:block; font-size:.8rem; color:var(--text-muted); margin-bottom:.3rem; font-weight:500; }
+        .form-group input, .form-group textarea, .form-select { width:100%; padding:.7rem .9rem; background:rgba(255,255,255,0.06); border:1px solid rgba(0,0,0,0.12); border-radius:8px; color:var(--text-dark); font-size:.95rem; font-family:inherit; transition:border-color .2s; outline:none; }
+        .form-group input:focus, .form-group textarea:focus, .form-select:focus { border-color:var(--primary-blue); box-shadow:0 0 0 3px rgba(37,99,235,0.15); }
+        .form-group input::placeholder, .form-group textarea::placeholder { color:rgba(0,0,0,0.3); }
+        .form-select { appearance:none; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='rgba(0,0,0,0.4)'%3E%3Cpath d='M6 8L0 0h12z'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right .9rem center; padding-right:2.5rem; background-color:rgba(255,255,255,0.06); }
+        .form-group textarea { resize:vertical; min-height:70px; }
+        .lead-submit-btn { width:100%; margin-top:1rem; padding:1rem; background:var(--primary-blue); color:#fff; border:none; border-radius:50px; font-size:1.1rem; font-weight:700; cursor:pointer; transition:all .3s; letter-spacing:.5px; }
+        .lead-submit-btn:hover { transform:translateY(-2px); box-shadow:0 10px 30px rgba(37,99,235,0.35); }
+        .lead-submit-btn:disabled { opacity:.6; cursor:not-allowed; transform:none; }
+        .lead-form-note { text-align:center; margin-top:.75rem; font-size:.8rem; color:var(--text-muted); }
+        .lead-success { text-align:center; padding:2rem 0; }
+        @media (max-width: 600px) { .form-row { flex-direction:column; } }
     </style>
 </head>
 <body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KC9D4QMP"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
     <!-- Navigation -->
     <nav>
         <div class="logo">EcomCasey</div>
@@ -1067,13 +1076,55 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- Final CTA -->
     <section class="final-cta" id="contact">
         <canvas id="footerWaveCanvas"></canvas>
-        <div style="max-width: 800px; margin: 0 auto;">
+        <div style="max-width: 800px; margin: 0 auto; position:relative; z-index:2;">
             <h2 class="final-cta-heading">Let's Build Your Growth Flywheel</h2>
             <p class="final-cta-subheading">Starting at $2,499/month. First month includes free audit & strategy.</p>
-            <div class="cta-buttons">
-                <a href="mailto:casey@ecomcasey.com?subject=Ecommerce%20Growth%20Strategy%20Call&body=Hi%20Casey%2C%0A%0AI'm%20interested%20in%20the%20Ecommerce%20Growth%20Flywheel%20program.%0A%0AMy%20business%3A%20%0ACurrent%20monthly%20revenue%3A%20%0AMain%20platforms%3A%20%0A%0AThanks!" class="cta-button">Book Your Strategy Call</a>
-                <a href="mailto:casey@ecomcasey.com" class="cta-button secondary">Email Casey</a>
+
+            <div class="lead-form" id="leadForm">
+                <h3 class="lead-form-title">Get Your Marketplace Growth Plan</h3>
+                <p class="lead-form-subtitle">Tell us about your brand. We'll reply within 24 hours.</p>
+                <form id="captureForm" onsubmit="handleLeadSubmit(event)">
+                    <div class="form-row">
+                        <div class="form-group"><label>Name *</label><input type="text" name="name" placeholder="Your name" required></div>
+                        <div class="form-group"><label>Email *</label><input type="email" name="email" placeholder="you@brand.com" required></div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group"><label>Brand Name</label><input type="text" name="business" placeholder="Your brand"></div>
+                        <div class="form-group">
+                            <label>Primary Marketplace</label>
+                            <select name="marketplace" class="form-select">
+                                <option value="" disabled selected>Select one</option>
+                                <option value="amazon">Amazon</option>
+                                <option value="walmart">Walmart</option>
+                                <option value="chewy">Chewy</option>
+                                <option value="d2c">D2C / Website</option>
+                                <option value="multiple">Multiple / Not Sure</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row full">
+                        <div class="form-group">
+                            <label>Current Monthly Revenue (approx)</label>
+                            <select name="revenue" class="form-select">
+                                <option value="" disabled selected>Select range</option>
+                                <option value="under-10k">Under $10K</option>
+                                <option value="10k-50k">$10K â $50K</option>
+                                <option value="50k-250k">$50K â $250K</option>
+                                <option value="250k-plus">$250K+</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row full"><div class="form-group"><label>What's your biggest growth challenge right now?</label><textarea name="message" placeholder="Ad spend, rankings, new marketplaces, catalog expansion â whatever's top of mind"></textarea></div></div>
+                    <button type="submit" class="lead-submit-btn" id="submitBtn">Get My Marketplace Growth Plan â</button>
+                </form>
+                <p class="lead-form-note">No spam. No obligation. Just a real conversation about growth.</p>
+                <div class="lead-success" id="successState" style="display:none;">
+                    <div style="font-size:3rem;margin-bottom:1rem;">â</div>
+                 <h3 style="font-size:1.5rem;color:var(--primary-blue);margin-bottom:.5rem;">We Got Your Info</h3>
+                    <p style="color:var(--text-muted);">Casey will reach out within 24 hours. Talk soon.</p>
+                </div>
             </div>
+
             <div class="contact-info">
                 Have questions? Reach out directly: <strong>casey@ecomcasey.com</strong>
             </div>
@@ -1326,6 +1377,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 }
             });
         });
+    </script>
+    <script>
+    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyi9slW14cdMcwPVQJtAuZvi528s29VrfNdbhtWstaOhQ9m7UA_BK8mmBKWYZe0Rzk2/exec';
+    function handleLeadSubmit(e) {
+        e.preventDefault();
+        const btn = document.getElementById('submitBtn');
+        btn.disabled = true; btn.textContent = 'Submitting...';
+        const form = document.getElementById('captureForm');
+        const data = Object.fromEntries(new FormData(form));
+        data.source = 'ecomcasey';
+        data.page = 'offer';
+        fetch(APPS_SCRIPT_URL, { method:'POST', mode:'no-cors', headers:{'Content-Type':'application/json'}, body:JSON.stringify(data) })
+        .then(() => {
+            form.style.display = 'none';
+            document.querySelector('.lead-form-note').style.display = 'none';
+            document.getElementById('successState').style.display = 'block';
+        })
+        .catch(() => {
+            btn.disabled = false; btn.textContent = 'Get My Marketplace Growth Plan â';
+            alert('Something went wrong. Please email casey@ecomcasey.com directly.');
+        });
+    }
     </script>
 </body>
 </html>
